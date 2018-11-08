@@ -5,6 +5,9 @@ const cors = require('cors');
 const register = require('./controlers/register.js');
 const signin = require('./controlers/signin.js');
 const tvdblogin = require('./controlers/tvdblogin.js');
+const refreshToken = require('./controlers/refreshToken.js');
+const seriesSearch = require('./controlers/seriesSearch.js');
+const getSeries = require('./controlers/getSeries.js');
 var request = require('request');
 
 // connect 
@@ -31,6 +34,9 @@ app.get('/',(req, res ) => res.send('it is working'))
 app.post('/signin', (req , res ) => {signin.handleSignin(req , res , knex ,bcrypt)})
 app.post('/register',(req,res) => { register.handleRegister( req , res , knex , bcrypt)})
 app.get('/tvdblogin', (req , res ) => {tvdblogin.handelTvDbLogin(req , res ,request )})
+app.post('/refreshToken', (req , res ) => {refreshToken.handelRefreshToken(req , res ,request )})
+app.post('/seriesSearch', (req , res ) => {seriesSearch.handelSeriesSearch(req , res ,request )})
+app.post('/getSeries', (req , res ) => {getSeries.handelGetSeries(req , res ,request )})
 app.get('/profile/:id', (req ,res) => {profile.handelProfileGet(req,res,knex)})
 
 
