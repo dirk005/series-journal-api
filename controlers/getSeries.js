@@ -21,7 +21,8 @@ const handelGetSeries = (req , res , request) =>{
 	    	res.json('404')
 	    }
 	    else {
-	    	res.json('error')
+	    	request(options, callback); // try again
+	    	//res.json('error')
 	    }
 	}
 

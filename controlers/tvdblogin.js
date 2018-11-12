@@ -24,15 +24,21 @@ const handelTvDbLogin = (req , res , request) =>{
 	};
 
 	// get the response and send it back to main site
-	const callback = (error, response, body) => {
+	const callback = (error, response, body) => {		
 	    if (!error && response.statusCode == 200) {
 	        res.json(body);			
-	    }else(
-	    	res.json('error')
-	    )
+	    }else if(!error && response.statusCode === 404){
+	    	res.json('404')
+	    }else{
+	    		//res.json('error')
+	    		request(options, callback); // try again
+	    	
+	    }
 	}
 
-	// use npm package request to get the API responce
+	
+
+	// use npm package request to get the API response send options and callback resevese response
 	request(options, callback);	
 	
 }
