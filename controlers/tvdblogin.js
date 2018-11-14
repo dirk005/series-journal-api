@@ -25,18 +25,17 @@ const handelTvDbLogin = (req , res , request) =>{
 
 	// get the response and send it back to main site
 	const callback = (error, response, body) => {		
-	    if (!error && response.statusCode == 200) {
+	    if (!error && response.statusCode == 200) { 
+	    	// got response send back to page
 	        res.json(body);			
-	    }else if(!error && response.statusCode === 404){
+	    }else if(!error && response.statusCode === 404){ 
+	    	// send back page not found
 	    	res.json('404')
 	    }else{
-	    		//res.json('error')
-	    		request(options, callback); // try again
-	    	
+	    	// try again by resending request
+	    	request(options, callback); 	    	
 	    }
 	}
-
-	
 
 	// use npm package request to get the API response send options and callback resevese response
 	request(options, callback);	
@@ -44,5 +43,5 @@ const handelTvDbLogin = (req , res , request) =>{
 }
 
 module.exports = {
-	handelTvDbLogin 
+	handelTvDbLogin  
 }
