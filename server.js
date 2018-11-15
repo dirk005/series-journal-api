@@ -12,6 +12,8 @@ const tvdblogin = require('./controlers/tvdblogin.js');
 const refreshToken = require('./controlers/refreshToken.js');
 const seriesSearch = require('./controlers/seriesSearch.js');
 const getSeries = require('./controlers/getSeries.js');
+const getSeriesSeason = require('./controlers/getSeriesSeason.js');
+const getSeriesEpisodes = require('./controlers/getSeriesEpisodes.js');
 var request = require('request');
 
 // setup coneccting to database details
@@ -48,6 +50,10 @@ app.post('/refreshToken', (req , res ) => {refreshToken.handelRefreshToken(req ,
 app.post('/seriesSearch', (req , res ) => {seriesSearch.handelSeriesSearch(req , res ,request )})
 //Gets series detail by series ID
 app.post('/getSeries', (req , res ) => {getSeries.handelGetSeries(req , res ,request )})
+//Gets series seasons by series ID
+app.post('/getSeriesSeason', (req , res ) => {getSeriesSeason.handelGetSeriesSeasons(req , res ,request )})
+//Gets series episodes by series ID
+app.post('/getSeriesEpisodes', (req , res ) => {getSeriesEpisodes.handelGetSeriesEpisodes(req , res ,request )})
 //Gets user details form the database
 app.get('/profile/:id', (req ,res) => {profile.handelProfileGet(req,res,knex)})
 
