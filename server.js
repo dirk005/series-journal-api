@@ -1,5 +1,5 @@
 /****************************************************************
- This is the main server to coneccect to the site 
+ This is the main server to connecect to the site 
 *****************************************************************/
 
 const express = require('express');
