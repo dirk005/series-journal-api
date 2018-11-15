@@ -19,22 +19,21 @@ const handelSeriesSearch = (req , res , request) =>{
 	};
 
 	// get the response and send it back to main site
-	function callback(error, response, body) {
-	  	 if (!error && response.statusCode == 200) {
-	  	 	// got response send back to page
-	        res.json(body);
-	    }else if(!error && response.statusCode === 404){
-	    	//Responde with page not found
+	const callback = (error, response, body) => {		
+	    if (!error && response.statusCode == 200) { 
+	    	// got response send back to page
+	        res.json(body);			
+	    }else if(!error && response.statusCode === 404){ 
+	    	// send back page not found
 	    	res.json('404')
-	    }
-	    else {
+	    }else{
 	    	// try again by resending request
 	    	request(options, callback); 	    	
 	    }
 	}
 
-	// use request to get the API response send options and callback resevese response
-	request(options, callback);
+	// use npm package request to get the API response send options and callback resevese response
+	request(options, callback);	
 }
 module.exports = {
 	handelSeriesSearch 

@@ -1,3 +1,7 @@
+/****************************************************************
+ This is the main server to coneccect to the site 
+*****************************************************************/
+
 const express = require('express');
 const bodyParser =require('body-parser');
 const bcrypt =require('bcrypt-nodejs');
@@ -10,7 +14,7 @@ const seriesSearch = require('./controlers/seriesSearch.js');
 const getSeries = require('./controlers/getSeries.js');
 var request = require('request');
 
-// connect 
+// setup coneccting to database details
 const knex = require('knex')({
   client: 'pg',
   connection: {
@@ -25,21 +29,29 @@ const knex = require('knex')({
   // }
 });
 
+//setup app and add bodyParser and cors to app
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-
+//default page to see if server is working
 app.get('/',(req, res ) => res.send('it is working'))
+//handel the sign in 
 app.post('/signin', (req , res ) => {signin.handleSignin(req , res , knex ,bcrypt)})
+//handel the register
 app.post('/register',(req,res) => { register.handleRegister( req , res , knex , bcrypt)})
+//handel the login to the TV DB and gets Auth key
 app.get('/tvdblogin', (req , res ) => {tvdblogin.handelTvDbLogin(req , res ,request )})
+//Refresh the Auth key
 app.post('/refreshToken', (req , res ) => {refreshToken.handelRefreshToken(req , res ,request )})
+//search series by sending a name to The TV DB
 app.post('/seriesSearch', (req , res ) => {seriesSearch.handelSeriesSearch(req , res ,request )})
+//Gets series detail by series ID
 app.post('/getSeries', (req , res ) => {getSeries.handelGetSeries(req , res ,request )})
+//Gets user details form the database
 app.get('/profile/:id', (req ,res) => {profile.handelProfileGet(req,res,knex)})
 
-
+//listens to port to see if conneted
 app.listen(process.env.PORT || 3001, () => {
 	console.log(`App is running on port ${process.env.PORT}`);
 })
