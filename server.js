@@ -14,6 +14,7 @@ const seriesSearch = require('./controlers/seriesSearch.js');
 const getSeries = require('./controlers/getSeries.js');
 const getSeriesSeason = require('./controlers/getSeriesSeason.js');
 const getSeriesEpisodes = require('./controlers/getSeriesEpisodes.js');
+const getSeriesActors = require('./controlers/getSeriesActors.js');
 var request = require('request');
 
 // setup coneccting to database details
@@ -54,6 +55,8 @@ app.post('/getSeries', (req , res ) => {getSeries.handelGetSeries(req , res ,req
 app.post('/getSeriesSeason', (req , res ) => {getSeriesSeason.handelGetSeriesSeasons(req , res ,request )})
 //Gets series episodes by series ID
 app.post('/getSeriesEpisodes', (req , res ) => {getSeriesEpisodes.handelGetSeriesEpisodes(req , res ,request )})
+//Gets series actors by series ID
+app.post('/getSeriesActors', (req , res ) => {getSeriesActors.handelGetSeriesActors(req , res ,request )})
 //Gets user details form the database
 app.get('/profile/:id', (req ,res) => {profile.handelProfileGet(req,res,knex)})
 

@@ -1,28 +1,27 @@
 /****************************************************************
- Get Series details form The TV DB 
+ Get Series actor details form The TV DB 
 *****************************************************************/
-const handelGetSeriesEpisodes = (req , res , request) =>{
+const handelGetSeriesActors = (req , res , request) =>{
 
-	//Gets Auth key, Page Number and series ID form site
-	const { authKey,seriesId,pageNum} = req.body;
+		//Gets Auth key, Page Number and series ID form site
+		const { authKey,seriesId} = req.body;
 
-	//setup headers
-	var headers = {
-	    'Accept': 'application/json',
-	    'Authorization': `Bearer ${authKey}`
-	};
+		//setup headers
+		var headers = {
+		    'Accept': 'application/json',
+		    'Authorization': `Bearer ${authKey}`
+		};
 
-	//setup options
-	var options = {
-	    url: `https://api.thetvdb.com/series/${seriesId}/episodes?page=${pageNum}`,
-	    headers: headers
-	};
+		//setup options
+		var options = {
+		    url: `https://api.thetvdb.com/series/${seriesId}/actors`,
+		    headers: headers
+		};
 
-	// get the response and send it back to main site
+		// get the response and send it back to main site
 		const callback = (error, response, body) => {		
 		    if (!error && response.statusCode == 200) { 
-		    	// got response send back to page
-		  
+		    	// got response send back to page		  
 		        res.json(body);			
 		    }else if(!error && response.statusCode === 404){ 
 		    	// send back page not found
@@ -39,5 +38,5 @@ const handelGetSeriesEpisodes = (req , res , request) =>{
 }
 
 module.exports = {
-	handelGetSeriesEpisodes 
+	handelGetSeriesActors 
 }
