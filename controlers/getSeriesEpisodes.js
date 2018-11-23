@@ -21,8 +21,7 @@ const handelGetSeriesEpisodes = (req , res , request) =>{
 	// get the response and send it back to main site
 		const callback = (error, response, body) => {		
 		    if (!error && response.statusCode == 200) { 
-		    	// got response send back to page
-		  
+		    	// got response send back to page		  
 		        res.json(body);			
 		    }else if(!error && response.statusCode === 404){ 
 		    	// send back page not found
